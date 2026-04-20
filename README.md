@@ -47,4 +47,4 @@ For technical issues or brand management:
 
 Maintainer: Victor Mutune
 
-Email: mutunevictor@gmail.com
+Email: mutunevictor254@gmail.com
