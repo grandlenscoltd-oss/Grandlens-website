@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grandlens Company — Printing · Branding · Graphics Design · Nairobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --black: #0f0f0f;
+    --dark: #1a1a1a;
+    --mid: #2a2a2a;
+    --warm: #f5f0eb;
+    --white: #ffffff;
+    --text-muted: rgba(255,255,255,0.45);
+    --text-mid: rgba(255,255,255,0.7);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--red);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(200,16,46,0.5);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--black);
+    z-index: 0;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,16,46,0.12) 0%, transparent 70%);
+  }
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--red);
+  }
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+  }
+  .hero-headline .line-red { color: var(--red); }
+  .hero-headline .line-muted { color: rgba(255,255,255,0.25); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-mid);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 4px;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--text-mid);
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost::after { content: '→'; transition: transform 0.2s; }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    right: 48px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--dark);
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    padding: 28px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 300; }
+
+  /* SECTION COMMONS */
+  section { padding: 100px 48px; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border: 0.5px solid rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+  .section-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .section-heading {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+  .section-heading .accent { color: var(--red); }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 60px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--black); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-left {}
+  .about-tagline {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--red);
+    font-style: italic;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+  .about-text {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .about-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .about-card {
+    background: var(--dark);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    padding: 24px;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  .about-card:hover { border-color: rgba(200,16,46,0.4); }
+  .about-card-icon { font-size: 24px; margin-bottom: 12px; }
+  .about-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .about-card-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .about-card.span-2 { grid-column: 1 / -1; }
+
+  /* SERVICES */
+  .services { background: var(--dark); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .service-card {
+    background: var(--dark);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--red);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: #1f1f1f; }
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    margin-bottom: -20px;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: rgba(200,16,46,0.08); }
+  .service-icon { font-size: 28px; margin-bottom: 16px; }
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .service-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .service-items { display: flex; flex-wrap: wrap; gap: 6px; }
+  .service-tag {
+    font-size: 10px;
+    color: var(--text-muted);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-weight: 400;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--black); }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .view-all {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.2);
+  }
+  .view-all:hover { color: var(--white); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: none;
+    background: var(--dark);
+  }
+  .portfolio-item.tall { grid-row: span 2; }
+  .portfolio-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .portfolio-item.tall .portfolio-img { aspect-ratio: 3/4; }
+  .portfolio-item:hover .portfolio-img { transform: scale(1.04); }
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-label {
+    font-size: 10px;
+    color: var(--red);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .portfolio-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  /* Portfolio placeholder colors */
+  .p1 { background: linear-gradient(135deg, #1a0a0a 0%, #3a0f1a 100%); }
+  .p2 { background: linear-gradient(135deg, #0a0f1a 0%, #1a2a3a 100%); }
+  .p3 { background: linear-gradient(135deg, #0f1a0a 0%, #1a3a1a 100%); }
+  .p4 { background: linear-gradient(135deg, #1a1a0a 0%, #3a2a0a 100%); }
+  .p5 { background: linear-gradient(135deg, #1a0f1a 0%, #2a1a3a 100%); }
+
+  .portfolio-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.6s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-item.tall .portfolio-placeholder { aspect-ratio: 3/4; }
+  .portfolio-item:hover .portfolio-placeholder { transform: scale(1.04); }
+  .pp-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: -1px;
+  }
+  .pp-type { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* CLIENTS */
+  .clients-section {
+    background: var(--dark);
+    padding: 60px 48px;
+  }
+  .clients-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+  .client-logo {
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+    padding: 16px 8px;
+    border: 0.5px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+  }
+  .client-logo:hover { color: rgba(255,255,255,0.55); }
+
+  /* PROCESS */
+  .process { background: var(--black); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(200,16,46,0.4), transparent);
+  }
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+    position: relative;
+  }
+  .step-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(200,16,46,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--red);
+    margin-bottom: 20px;
+    background: var(--black);
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .process-step:hover .step-circle {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .step-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--dark); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .testimonial-card {
+    background: var(--black);
+    border: 0.5px solid rgba(255,255,255,0.07);
+    padding: 32px;
+    border-radius: 4px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(200,16,46,0.3); }
+  .testimonial-quote {
+    font-size: 48px;
+    color: var(--red);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+  .testimonial-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .testimonial-stars { color: var(--red); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--red);
+    border: 1px solid rgba(200,16,46,0.3);
+  }
+  .author-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; }
+  .author-role { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--red);
+    padding: 80px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .cta-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 3.5vw, 52px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  .cta-headline .dim { opacity: 0.55; }
+  .btn-white {
+    background: var(--white);
+    color: var(--red);
+    padding: 16px 36px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 4px;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-white:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* CONTACT */
+  .contact { background: var(--black); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .contact-info {}
+  .contact-detail {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+  }
+  .contact-detail:last-child { border-bottom: none; }
+  .cd-icon {
+    width: 44px; height: 44px;
+    background: var(--dark);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .cd-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .cd-value { font-size: 15px; color: var(--white); font-weight: 500; }
+
+  /* QUOTE FORM */
+  .quote-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .form-input, .form-select, .form-textarea {
+    background: var(--dark);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: rgba(200,16,46,0.5);
+  }
+  .form-select option { background: var(--dark); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    background: var(--red);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border: none;
+    border-radius: 4px;
+    cursor: none;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+    text-transform: uppercase;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 0.5px solid rgba(255,255,255,0.07);
+    padding: 48px 48px 32px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    margin-bottom: 32px;
+  }
+  .footer-brand-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .footer-brand-name span { color: var(--red); }
+  .footer-brand-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 240px; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 0.5px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--red); color: var(--white); }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .footer-bottom a { color: var(--red); text-decoration: none; }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+  .fade-up:nth-child(5) { transition-delay: 0.4s; }
+  .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 0 20px 60px; }
+    .hero-headline { letter-spacing: -1px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item.tall { grid-row: auto; }
+    .portfolio-overlay { opacity: 1; }
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .process-steps::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .cta-band { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero-scroll-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">grand<span>.</span>lens</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Our Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid-lines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Nairobi's Branding Studio · Est. 2010</div>
+    <h1 class="hero-headline">
+      We make<br>
+      <span class="line-red">businesses</span><br>
+      <span class="line-muted">look undeniable.</span>
+    </h1>
+    <p class="hero-sub">Printing, Branding & Graphics Design from the heart of Nairobi CBD. From business cards to vehicle branding — if you can think it, we can ink it.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#portfolio" class="btn-ghost">See Our Work</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item fade-up">
+    <div class="stat-num">500<span>+</span></div>
+    <div class="stat-label">Orders completed monthly</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">94<span>%</span></div>
+    <div class="stat-label">Client recommendation rate</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">7<span>K+</span></div>
+    <div class="stat-label">Followers trust our work</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">10<span>+</span></div>
+    <div class="stat-label">Years serving Nairobi</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-left fade-up">
+      <div class="section-tag"><span class="dot"></span>01. About Grandlens</div>
+      <h2 class="section-heading">More than a printer.<br><span class="accent">A brand partner.</span></h2>
+      <div class="about-tagline">"If you can think it,<br>we can ink it."</div>
+      <p class="about-text">Grandlens Company is Nairobi's trusted printing, branding and graphics design studio. Based in Kenbanco House, Nairobi CBD, we've spent over a decade helping businesses — from startups to corporates — look professional, credible, and unforgettable.</p>
+      <p class="about-text">Trusted by Kenya Power, NCCK, County Assembly of Turkana, Airtel, Subaru, Madison Insurance and hundreds of Nairobi businesses. When it needs to look right, they call Grandlens.</p>
+    </div>
+    <div class="about-right fade-up">
+      <div class="about-card">
+        <div class="about-card-icon">🏆</div>
+        <div class="about-card-title">Quality First</div>
+        <div class="about-card-text">Every order goes through quality checks before dispatch. We don't release work we're not proud of.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <div class="about-card-title">Fast Turnaround</div>
+        <div class="about-card-text">Same-day banners. 24-hour business cards. 48-hour t-shirts. We work at the speed of Nairobi business.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🎨</div>
+        <div class="about-card-title">In-House Design</div>
+        <div class="about-card-text">No outsourcing. Our designers work with you from brief to final proof before a single sheet is printed.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📦</div>
+        <div class="about-card-title">Delivery Available</div>
+        <div class="about-card-text">Nairobi CBD delivery for orders above KSh 2,000. Countrywide courier delivery also available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag fade-up"><span class="dot"></span>02. What We Do</div>
+  <h2 class="section-heading fade-up">Every service your<br><span class="accent">brand needs.</span></h2>
+  <p class="section-sub fade-up">From the first business card to the full vehicle wrap — we handle everything under one roof in Nairobi CBD.</p>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-icon">🖨️</div>
+      <div class="service-title">Printing</div>
+      <div class="service-text">Large format, offset and digital printing. From single flyers to 10,000-unit runs — we handle the volume.</div>
+      <div class="service-items">
+        <span class="service-tag">Business Cards</span>
+        <span class="service-tag">Brochures</span>
+        <span class="service-tag">Banners</span>
+        <span class="service-tag">Flyers</span>
+        <span class="service-tag">Notebooks</span>
+        <span class="service-tag">Letterheads</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-icon">🎁</div>
+      <div class="service-title">Branded Merchandise</div>
+      <div class="service-text">Custom branded corporate gifts and promotional items that keep your business top of mind long after delivery.</div>
+      <div class="service-items">
+        <span class="service-tag">Flasks & Tumblers</span>
+        <span class="service-tag">Mugs</span>
+        <span class="service-tag">Pens</span>
+        <span class="service-tag">Notebooks</span>
+        <span class="service-tag">Gift Sets</span>
+        <span class="service-tag">Bags</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-icon">👕</div>
+      <div class="service-title">Screen Printing</div>
+      <div class="service-text">High-quality screen printing on t-shirts, uniforms, bags and more. Minimum orders available for startups too.</div>
+      <div class="service-items">
+        <span class="service-tag">T-shirts</span>
+        <span class="service-tag">Uniforms</span>
+        <span class="service-tag">Hoodies</span>
+        <span class="service-tag">Tote Bags</span>
+        <span class="service-tag">Aprons</span>
+        <span class="service-tag">Caps</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-icon">🪡</div>
+      <div class="service-title">Embroidery</div>
+      <div class="service-text">Precision embroidery for corporate wear, staff uniforms and premium branded apparel. Clean, durable, professional.</div>
+      <div class="service-items">
+        <span class="service-tag">Dustcoats</span>
+        <span class="service-tag">Polo Shirts</span>
+        <span class="service-tag">Caps</span>
+        <span class="service-tag">Jackets</span>
+        <span class="service-tag">Staff Wear</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">05</div>
+      <div class="service-icon">🪧</div>
+      <div class="service-title">Signage & Banners</div>
+      <div class="service-text">Indoor and outdoor signage, 3D acrylic letters, roll-up banners, vehicle branding and exhibition displays.</div>
+      <div class="service-items">
+        <span class="service-tag">Roll-up Banners</span>
+        <span class="service-tag">3D Signage</span>
+        <span class="service-tag">Vehicle Branding</span>
+        <span class="service-tag">Outdoor Signs</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">06</div>
+      <div class="service-icon">🏷️</div>
+      <div class="service-title">Labels, Stickers & IDs</div>
+      <div class="service-text">Product labels, packaging stickers, staff IDs, lanyards and barcode labels. Precision cut, premium finish.</div>
+      <div class="service-items">
+        <span class="service-tag">Product Labels</span>
+        <span class="service-tag">Staff IDs</span>
+        <span class="service-tag">Lanyards</span>
+        <span class="service-tag">Vinyl Stickers</span>
+        <span class="service-tag">Barcodes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <div class="section-tag fade-up"><span class="dot"></span>03. Selected Work</div>
+      <h2 class="section-heading fade-up">Work we're<br><span class="accent">proud of.</span></h2>
+    </div>
+    <a href="#contact" class="view-all">View All Work →</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item tall p1 fade-up">
+      <div class="portfolio-placeholder">
+        <div class="pp-logo">NCCK</div>
+        <div class="pp-type">Corporate Branding</div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-label">Corporate · Merchandise</div>
+        <div class="portfolio-title">NCCK — Branded Notebooks, Flasks & Lanyards</div>
+      </div>
+    </div>
+    <div class="portfolio-item p2 fade-up">
+      <div class="portfolio-placeholder">
+        <div class="pp-logo">Kenya Power</div>
+        <div class="pp-type">Corporate Gifts</div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-label">Corporate · Gift Sets</div>
+        <div class="portfolio-title">Kenya Power — Executive Branded Gift Sets</div>
+      </div>
+    </div>
+    <div class="portfolio-item p3 fade-up">
+      <div class="portfolio-placeholder">
+        <div class="pp-logo">County Assembly</div>
+        <div class="pp-type">Government Branding</div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-label">Government · Stationery</div>
+        <div class="portfolio-title">County Assembly of Turkana — Full Stationery Set</div>
+      </div>
+    </div>
+    <div class="portfolio-item tall p4 fade-up">
+      <div class="portfolio-placeholder">
+        <div class="pp-logo">Subaru</div>
+        <div class="pp-type">Corporate Merchandise</div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-label">Automotive · Branding</div>
+        <div class="portfolio-title">Subaru Kenya — Branded Corporate Merchandise</div>
+      </div>
+    </div>
+    <div class="portfolio-item p5 fade-up">
+      <div class="portfolio-placeholder">
+        <div class="pp-logo">Safari Rally</div>
+        <div class="pp-type">Event Printing</div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-label">Events · Large Format</div>
+        <div class="portfolio-title">WRC Safari Rally Kenya 2026 — 5M Stickers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients-section">
+  <div class="clients-label">Trusted by leading organisations across Kenya</div>
+  <div class="clients-grid">
+    <div class="client-logo">Kenya Power</div>
+    <div class="client-logo">NCCK</div>
+    <div class="client-logo">Airtel Kenya</div>
+    <div class="client-logo">Subaru Kenya</div>
+    <div class="client-logo">Madison Insurance</div>
+    <div class="client-logo">Safari Rally</div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-tag fade-up"><span class="dot"></span>04. How It Works</div>
+  <h2 class="section-heading fade-up">From brief to delivery<br><span class="accent">in 5 steps.</span></h2>
+  <div class="process-steps">
+    <div class="process-step fade-up">
+      <div class="step-circle">01</div>
+      <div class="step-title">Contact Us</div>
+      <div class="step-text">DM, WhatsApp or call 0700 512 374 to start your order</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle">02</div>
+      <div class="step-title">Share Brief</div>
+      <div class="step-text">Tell us what you need — quantity, size, deadline, any existing brand files</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle">03</div>
+      <div class="step-title">Get Quote</div>
+      <div class="step-text">We send a full quote within 2 hours during business hours</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle">04</div>
+      <div class="step-title">Approve Design</div>
+      <div class="step-text">We send a digital proof. You confirm before we print a single sheet</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle">05</div>
+      <div class="step-title">We Deliver</div>
+      <div class="step-text">Collect from our Nairobi CBD office or we deliver to your door</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="section-tag fade-up"><span class="dot"></span>05. Client Reviews</div>
+  <h2 class="section-heading fade-up">94% of clients<br><span class="accent">recommend us.</span></h2>
+  <p class="section-sub fade-up">Don't take our word for it — here's what Nairobi business owners say about working with Grandlens.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">Grandlens delivered exactly what we needed — quality branded merchandise for our staff. The flasks and notebooks were perfect. Delivered on time and exactly as designed.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">MK</div>
+        <div>
+          <div class="author-name">Mutune Victor</div>
+          <div class="author-role">Business Owner, Nairobi</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">We've used Grandlens three times now. Every single order has been on time, exactly as approved, and the quality is consistently excellent. They're our go-to for all corporate printing.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">SN</div>
+        <div>
+          <div class="author-name">Siocom Osanya</div>
+          <div class="author-role">Corporate Client, Nairobi</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">The embroidery work they did on our staff dustcoats was exceptional. Sharp, clean, professional. Our team looks incredible and the quality has held up wash after wash.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">JW</div>
+        <div>
+          <div class="author-name">JW Homes</div>
+          <div class="author-role">Property Company, Nairobi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-headline">
+    Ready to brand<br>
+    <span class="dim">your business?</span>
+  </div>
+  <a href="#contact" class="btn-white">Get a Free Quote →</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag fade-up"><span class="dot"></span>06. Get In Touch</div>
+  <h2 class="section-heading fade-up">Let's build your<br><span class="accent">brand together.</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <div class="contact-detail">
+        <div class="cd-icon">📍</div>
+        <div>
+          <div class="cd-label">Our Location</div>
+          <div class="cd-value">Kenbanco House, 1st Floor, Room 13<br>Haile Selassie Avenue, Nairobi CBD</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">📲</div>
+        <div>
+          <div class="cd-label">Phone & WhatsApp</div>
+          <div class="cd-value">+254 700 512 374</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">📧</div>
+        <div>
+          <div class="cd-label">Email</div>
+          <div class="cd-value">grandlenscoltd@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">🕐</div>
+        <div>
+          <div class="cd-label">Working Hours</div>
+          <div class="cd-value">Monday – Saturday<br>8:00 AM – 6:00 PM</div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up">
+      <form class="quote-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Kamau" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="0700 512 374" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Business / Organisation Name</label>
+          <input type="text" class="form-input" placeholder="Your Company Ltd">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service Needed</label>
+          <select class="form-select" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Printing (Banners, Flyers, Cards)</option>
+            <option>Branded Merchandise</option>
+            <option>Screen Printing (T-shirts, Uniforms)</option>
+            <option>Embroidery</option>
+            <option>Signage & Vehicle Branding</option>
+            <option>Labels, Stickers & IDs</option>
+            <option>Corporate Gift Sets</option>
+            <option>Custom / Personal Gifts</option>
+            <option>Graphics Design Only</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Quantity (approx)</label>
+            <input type="text" class="form-input" placeholder="e.g. 50 pieces">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deadline</label>
+            <input type="text" class="form-input" placeholder="e.g. Within 3 days">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell us more about your order</label>
+          <textarea class="form-textarea" placeholder="Describe your branding, colours, any existing designs you have, or any specific requirements..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Quote Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">grand<span>.</span>lens</div>
+      <div class="footer-brand-text">Nairobi's trusted printing, branding and graphics design studio. If you can think it, we can ink it.</div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/grandlenscompany" class="social-btn" title="Instagram">📷</a>
+        <a href="https://tiktok.com/@grandlensprinting" class="social-btn" title="TikTok">🎵</a>
+        <a href="https://facebook.com/GrandlensCompany" class="social-btn" title="Facebook">👍</a>
+        <a href="https://wa.me/254700512374" class="social-btn" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Printing</a></li>
+        <li><a href="#services">Branded Merchandise</a></li>
+        <li><a href="#services">Screen Printing</a></li>
+        <li><a href="#services">Embroidery</a></li>
+        <li><a href="#services">Signage & Banners</a></li>
+        <li><a href="#services">Labels & IDs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#portfolio">Our Work</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+254700512374">0700 512 374</a></li>
+        <li><a href="mailto:grandlenscoltd@gmail.com">grandlenscoltd@gmail.com</a></li>
+        <li><a href="#">Kenbanco House, Rm 13</a></li>
+        <li><a href="#">Nairobi CBD, Kenya</a></li>
+        <li><a href="https://wa.me/254700512374">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Grandlens Company Ltd · All rights reserved</span>
+    <span>Built for <a href="#">@grandlenscompany</a> · Nairobi, Kenya 🇰🇪</span>
+  </div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+  document.querySelectorAll('a, button, .service-card, .portfolio-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    });
+  });
+
+  // NAVBAR SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FADE UP ANIMATIONS
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // FORM
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.6';
+    setTimeout(() => {
+      btn.textContent = '✓ Request Sent! We\'ll contact you within 2 hours.';
+      btn.style.background = '#2d8653';
+      btn.style.opacity = '1';
+    }, 1200);
+  }
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
