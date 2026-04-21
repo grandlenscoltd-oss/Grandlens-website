@@ -1217,24 +1217,26 @@
       </div>
     </div>
     <div class="fade-up">
-      <form class="quote-form" onsubmit="handleSubmit(event)">
+      <form class="quote-form" action="https://formspree.io/f/xdaylbpj" method="POST" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="_subject" value="New Quote Request — Grandlens Website">
+        <input type="hidden" name="_next" value="https://grandlenscompany.netlify.app/#contact">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" placeholder="John Kamau" required>
+            <input type="text" name="name" class="form-input" placeholder="John Kamau" required>
           </div>
           <div class="form-group">
             <label class="form-label">Phone / WhatsApp</label>
-            <input type="tel" class="form-input" placeholder="0700 512 374" required>
+            <input type="tel" name="phone" class="form-input" placeholder="0700 000 000" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Business / Organisation Name</label>
-          <input type="text" class="form-input" placeholder="Your Company Ltd">
+          <input type="text" name="business" class="form-input" placeholder="Your Company Ltd">
         </div>
         <div class="form-group">
           <label class="form-label">Service Needed</label>
-          <select class="form-select" required>
+          <select name="service" class="form-select" required>
             <option value="" disabled selected>Select a service</option>
             <option>Printing (Banners, Flyers, Cards)</option>
             <option>Branded Merchandise</option>
@@ -1251,16 +1253,16 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Quantity (approx)</label>
-            <input type="text" class="form-input" placeholder="e.g. 50 pieces">
+            <input type="text" name="quantity" class="form-input" placeholder="e.g. 50 pieces">
           </div>
           <div class="form-group">
             <label class="form-label">Deadline</label>
-            <input type="text" class="form-input" placeholder="e.g. Within 3 days">
+            <input type="text" name="deadline" class="form-input" placeholder="e.g. Within 3 days">
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Tell us more about your order</label>
-          <textarea class="form-textarea" placeholder="Describe your branding, colours, any existing designs you have, or any specific requirements..."></textarea>
+          <textarea name="message" class="form-textarea" placeholder="Describe your branding, colours, any existing designs you have, or any specific requirements..."></textarea>
         </div>
         <button type="submit" class="form-submit">Send Quote Request →</button>
       </form>
@@ -1354,16 +1356,11 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   // FORM
-  function handleSubmit(e) {
-    e.preventDefault();
+ function handleSubmit(e) {
     const btn = e.target.querySelector('.form-submit');
     btn.textContent = 'Sending...';
-    btn.style.opacity = '0.6';
-    setTimeout(() => {
-      btn.textContent = '✓ Request Sent! We\'ll contact you within 2 hours.';
-      btn.style.background = '#2d8653';
-      btn.style.opacity = '1';
-    }, 1200);
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
   }
 
   // SMOOTH SCROLL
